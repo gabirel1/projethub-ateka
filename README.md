@@ -7,7 +7,7 @@ Les libs à installer :
 
 ```pip3 install pyaudio```
 
-```sudo apt-get install python-pyaudio python3-pyaudio```
+```sudo apt-get install python-pyaudio python3-pyaudio``` ou ```brew install portaudio```
 
 Doc à utiliser :
 
