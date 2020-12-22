@@ -7,6 +7,8 @@ Les libs à installer :
 
 ```pip3 install pyaudio```
 
+```sudo apt-get install python-pyaudio python3-pyaudio```
+
 Doc à utiliser :
 
 https://realpython.com/python-speech-recognition/#using-listen-to-capture-microphone-input
