@@ -7,7 +7,14 @@ Les libs à installer :
 
 ```pip3 install pyaudio```
 
+```pip3 install pyttsx3```
+
 ```sudo apt-get install python-pyaudio python3-pyaudio``` ou ```brew install portaudio```
+
+```sudo apt-get install ffmpeg```
+
+```sudo apt-get install espeak```
+
 
 Doc à utiliser :
 
