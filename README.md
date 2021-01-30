@@ -1,5 +1,5 @@
 # projethub-ateka
-projet hub with rafik and leo with the goal of making our own alexa
+HUB Project with Rafik and Léo with the goal of making our own alexa.
 
 Les libs à installer :
 
