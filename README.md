@@ -15,6 +15,9 @@ Les libs à installer :
 
 ```sudo apt-get install espeak```
 
+```pip3 install playsound```
+
+```sudo apt-get install vlc``` ?
 
 Doc à utiliser :
 
