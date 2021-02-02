@@ -23,4 +23,5 @@ Doc à utiliser :
 
 https://realpython.com/python-speech-recognition/#using-listen-to-capture-microphone-input
 https://medium.com/towards-artificial-intelligence/creating-a-voice-recognition-application-with-python-57d8c3e55256
+
 https://www.datacamp.com/community/tutorials/fuzzy-string-python
