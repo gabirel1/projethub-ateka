@@ -1,18 +1,12 @@
 import speech_recognition as sr
-
-# with sr.Microphone() as source:
-#   try :
-#     r.adjust_for_ambient_noise(source)
-#     data = r.record(source, duration=2)
-#     text = r.recognize_google(data, language='fr')
-#     print(text)
-#   except:
-#     print('error')
+from fuzzywuzzy import fuzz
 
 def mainFunction(source):
   audio = r.listen(source)
   text = r.recognize_google(audio, language='fr_FR')
+  Ratio = fuzz.ratio(text.lower(), "inscrit moi au projet")
   print(text)
+  print(Ratio)
 
 
 if __name__ == "__main__":

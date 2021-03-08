@@ -17,6 +17,10 @@ Les libs à installer :
 
 ```pip3 install playsound```
 
+```pip3 install python-Levenshtein```
+
+```pip3 install fuzzywuzzy```
+
 ```sudo apt-get install vlc``` ?
 
 Doc à utiliser :
