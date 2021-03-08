@@ -24,7 +24,7 @@ const requestListener = function (req, res) {
 
 app.route('/autologin')
     .get((req, res) => {
-        res.json(autologin);
+        res.json({token: autologin});
     })
     .post((req, res) => {
         console.log(req.body);
