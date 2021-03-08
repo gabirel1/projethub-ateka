@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html>
-    <header>
-        <title>Ateka</title>
-    </header>
-    <body>
-        <h3>LOGIN</h3>
-        <button type="button" name="myButton" formtarget="_self">Click me!</button>
-    </body>
+
+<head>
+    <title>My Website</title>
+    <script>
+        function makeRequest() {
+            console.log(document.getElementById("autologinInput").value);
+            fetch('http://localhost:3000/autologin', {
+                method: 'POST',
+                headers: {
+                    "Access-Control-Allow-Origin": '*',
+                },
+                body: JSON.stringify({
+                    token: document.getElementById("autologinInput").value
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+        }
+    </script>
+    <style>
+        *,
+        html {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: rgb(236, 152, 42);
+        }
+
+        .center {
+            width: 100%;
+            height: 50%;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 144px;
+        }
+
+        p {
+            font-size: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Ateka</h1>
+        <p>Thanks for using Ateka</p>
+        <br>
+        <br>
+        <input type="text" style="width: 15%;" id="autologinInput" value="enter your Epitech autologin here" onfocus="this.value='';" required></input>
+        <button style="width: 4%;" onclick="makeRequest()">Click here</button>
+    </div>
+</body>
+
 </html>
