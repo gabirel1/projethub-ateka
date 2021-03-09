@@ -16,6 +16,7 @@ def mainFunction(source, VOICE_PLAYER, auth_token):
 
     print(text)
     print(Ratio)
+    print(testGPA)
     VOICE_PLAYER.__say__(text)
 
 if __name__ == "__main__":
