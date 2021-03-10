@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const portExpress = 3000;
 const host = 'localhost'
-const port = 80
+const port = 8080
 app.use(cors())
 app.use(bodyParser());
 
