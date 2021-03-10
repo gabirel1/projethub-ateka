@@ -15,6 +15,9 @@ class API_INTRA:
     def getName(self):
         return self.__request__profil()["title"]
 
+    def getLogin(self):
+        return self.__request__profil()["login"]
+
     def getPromo(self):
         return self.__request__profil()["promo"]
 
@@ -24,6 +27,9 @@ class API_INTRA:
     def getGPA(self):
         return self.__request__profil()["gpa"][0]["gpa"]
 
+    def getCredits(self):
+        return str(self.__request__profil()["credits"])
+
     def getCycle(self):
         return self.__request__profil()["gpa"][0]["cycle"]
 
@@ -32,6 +38,10 @@ class API_INTRA:
     def __request__dashboard(self):
         r = requests.get(self.baseURL + "/?format=json")
         return r.json()["board"]
+
+    def __request__dashboard2(self):
+        r = requests.get(self.baseURL + "/?format=json")
+        return r.json()["history"]
 
     def getCurrentProjects(self):
         return self.__request__dashboard()["board"]["projets"]
@@ -44,3 +54,14 @@ class API_INTRA:
 
     def getLastNotes(self):
         return self.__request__dashboard()["board"]["notes"]
+
+    def getLastNotification(self):
+        return self.__request__dashboard2()[0]["title"]
+
+    def getNotifications(self):
+        text = ""
+        request = self.__request__dashboard2()
+        for i in request :
+            text += i["title"]
+            text += ". "
+        return text
