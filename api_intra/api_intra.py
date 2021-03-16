@@ -27,6 +27,9 @@ class API_INTRA:
     def getGPA(self):
         return self.__request__profil()["gpa"][0]["gpa"]
 
+    def getLogTime(self):
+        return self.__request__profil()["nsstat"]["active"]
+
     def getCredits(self):
         return str(self.__request__profil()["credits"])
 
