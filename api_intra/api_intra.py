@@ -33,6 +33,18 @@ class API_INTRA:
     def getCycle(self):
         return self.__request__profil()["gpa"][0]["cycle"]
 
+    def getFlags(self):
+        login = self.getLogin()
+        print(f"login : {login}")
+        r = requests.get(self.baseURL + "/user/" + login + "/flags?format=json")
+        data = r.json()
+        medals = data["flags"]["medal"]["modules"]
+        nb_of_medals = data["flags"]["medal"]["nb"]
+        tab = []
+        for i in range(nb_of_medals) :
+            tab.append(medals[i]["title"])
+        return tab
+
     #### DASHBOARD ####
 
     def __request__dashboard(self):

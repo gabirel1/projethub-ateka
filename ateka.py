@@ -30,6 +30,11 @@ def mainFunction(source, VOICE_PLAYER, INST_API_INTRA, COMMANDS):
     print(text)
     print("-----")
     commands = COMMANDS.getCommands()
+
+    tab = INST_API_INTRA.getFlags()
+
+    for i in tab:
+        print(i)
     for i in commands:
         ratio = fuzz.ratio(text, i["sentence"].lower())
         print("-----")
