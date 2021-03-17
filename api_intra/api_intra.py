@@ -36,6 +36,23 @@ class API_INTRA:
     def getCycle(self):
         return self.__request__profil()["gpa"][0]["cycle"]
 
+    def getNotes(self):
+        login = self.getLogin()
+        print(f"login : {login}")
+        r = requests.get(self.baseURL + "/user/" + login + "/notes?format=json")
+        data = r.json()["notes"]
+        tab = []
+        index = 0
+        if (len(tab) <= 10):
+            for i in range(data) :
+                tab.append({"title": i["title"], "note": i["final_note"]})
+        else :
+            for i in range(data) :
+                index += 1
+                if (index > 10) :
+                    tab.append({"title": i["title"], "note": i["final_note"]})
+        return tab
+
     def getFlags(self):
         login = self.getLogin()
         print(f"login : {login}")
