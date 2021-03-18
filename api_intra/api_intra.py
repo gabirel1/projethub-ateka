@@ -36,34 +36,34 @@ class API_INTRA:
     def getCycle(self):
         return self.__request__profil()["gpa"][0]["cycle"]
 
-    def getNotes(self):
-        login = self.getLogin()
-        print(f"login : {login}")
-        r = requests.get(self.baseURL + "/user/" + login + "/notes?format=json")
-        data = r.json()["notes"]
-        tab = []
-        index = 0
-        if (len(tab) <= 10):
-            for i in range(data) :
-                tab.append({"title": i["title"], "note": i["final_note"]})
-        else :
-            for i in range(data) :
-                index += 1
-                if (index > 10) :
-                    tab.append({"title": i["title"], "note": i["final_note"]})
-        return tab
+    # def getNotes(self):
+    #     login = self.getLogin()
+    #     print(f"login : {login}")
+    #     r = requests.get(self.baseURL + "/user/" + login + "/notes?format=json")
+    #     data = r.json()["notes"]
+    #     tab = []
+    #     index = 0
+    #     if (len(tab) <= 10):
+    #         for i in range(data) :
+    #             tab.append({"title": i["title"], "note": i["final_note"]})
+    #     else :
+    #         for i in range(data) :
+    #             index += 1
+    #             if (index > 10) :
+    #                 tab.append({"title": i["title"], "note": i["final_note"]})
+    #     return tab
 
-    def getFlags(self):
-        login = self.getLogin()
-        print(f"login : {login}")
-        r = requests.get(self.baseURL + "/user/" + login + "/flags?format=json")
-        data = r.json()
-        medals = data["flags"]["medal"]["modules"]
-        nb_of_medals = data["flags"]["medal"]["nb"]
-        tab = []
-        for i in range(nb_of_medals) :
-            tab.append(medals[i]["title"])
-        return tab
+    # def getFlags(self):
+    #     login = self.getLogin()
+    #     print(f"login : {login}")
+    #     r = requests.get(self.baseURL + "/user/" + login + "/flags?format=json")
+    #     data = r.json()
+    #     medals = data["flags"]["medal"]["modules"]
+    #     nb_of_medals = data["flags"]["medal"]["nb"]
+    #     tab = []
+    #     for i in range(nb_of_medals) :
+    #         tab.append(medals[i]["title"])
+    #     return tab
 
     #### DASHBOARD ####
 
@@ -90,6 +90,9 @@ class API_INTRA:
     def getLastNotification(self):
         return self.__request__dashboard2()[0]["title"]
 
+    def getLastNotes(self):
+        return self.__request__dashboard()["modules"]
+
     def getNotifications(self):
         text = ""
         request = self.__request__dashboard2()
@@ -97,3 +100,22 @@ class API_INTRA:
             text += i["title"]
             text += ". "
         return text
+
+    ### POST METHODS ####
+
+    def register_module(self, module_name) :
+        return requests.post("https://intra.epitech.eu/module/2020/" + module_name + "/MPL-4-1/register?format=json", json="{login:\"" + self.getLogin() +"\"")
+    def unregister_module(self, module_name) :
+        return requests.post("https://intra.epitech.eu/module/2020/" + module_name + "/MPL-4-1/unregister?format=json", json="{login:\"" + self.getLogin() +"\"")
+
+    def register_projet(self, module_name) :
+        return (200)
+
+    def unregister_projet(self, module_name) :
+        return (200)
+
+    def register_activity(self, module_name) :
+        return (200)
+
+    def unregister_activity(self, module_name) :
+        return (200)
