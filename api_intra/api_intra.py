@@ -79,18 +79,18 @@ class API_INTRA:
         return self.__request__dashboard()["projets"]
 
     def getCurrentActivities(self):
-        return self.__request__dashboard()["activities"]
+        return self.__request__dashboard()
 
     def getCurrentModules(self):
         return self.__request__dashboard()["modules"]
 
     def getLastNotes(self):
-        return self.__request__dashboard()["notes"]
+        return self.__request__dashboard()["notes"][0]['note']
 
     def getLastNotification(self):
         return self.__request__dashboard2()[0]["title"]
 
-    def getLastNotes(self):
+    def getModules(self):
         return self.__request__dashboard()["modules"]
 
     def getNotifications(self):

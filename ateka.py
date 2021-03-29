@@ -11,14 +11,14 @@ def execFunction(id, INST_API_INTRA):
         2: INST_API_INTRA.getCredits(),
         3: INST_API_INTRA.getLastNotification(),
         4: INST_API_INTRA.getNotifications(),
-        5: "May",
-        6: "June",
-        7: "July",
-        8: "August",
-        9: "September",
-        10: "October",
-        11: "November",
-        12: "December"
+        5: INST_API_INTRA.getCurrentProjects(),
+        6: INST_API_INTRA.getCurrentActivities(),
+        7: INST_API_INTRA.getCurrentModules(),
+        8: INST_API_INTRA.getLastNotes(),
+        # 9: INST_API_INTRA.getLastNotification(),
+        # 10: INST_API_INTRA.getLastNotes(),
+        # 11: "November",
+        # 12: "December"
     }
     return switcher.get(id, "")
 
