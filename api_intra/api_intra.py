@@ -1,5 +1,5 @@
 import requests
-
+from fuzzywuzzy import fuzz
 
 class API_INTRA:
     def __init__(self, auth_token):
@@ -36,34 +36,34 @@ class API_INTRA:
     def getCycle(self):
         return self.__request__profil()["gpa"][0]["cycle"]
 
-    # def getNotes(self):
-    #     login = self.getLogin()
-    #     print(f"login : {login}")
-    #     r = requests.get(self.baseURL + "/user/" + login + "/notes?format=json")
-    #     data = r.json()["notes"]
-    #     tab = []
-    #     index = 0
-    #     if (len(tab) <= 10):
-    #         for i in range(data) :
-    #             tab.append({"title": i["title"], "note": i["final_note"]})
-    #     else :
-    #         for i in range(data) :
-    #             index += 1
-    #             if (index > 10) :
-    #                 tab.append({"title": i["title"], "note": i["final_note"]})
-    #     return tab
+    def getNotes(self):
+        login = self.getLogin()
+        print(f"login : {login}")
+        r = requests.get(self.baseURL + "/user/" + login + "/notes?format=json")
+        data = r.json()["notes"]
+        tab = []
+        index = 0
+        if (len(tab) <= 10):
+            for i in range(data) :
+                tab.append({"title": i["title"], "note": i["final_note"]})
+        else :
+            for i in range(data) :
+                index += 1
+                if (index > 10) :
+                    tab.append({"title": i["title"], "note": i["final_note"]})
+        return tab
 
-    # def getFlags(self):
-    #     login = self.getLogin()
-    #     print(f"login : {login}")
-    #     r = requests.get(self.baseURL + "/user/" + login + "/flags?format=json")
-    #     data = r.json()
-    #     medals = data["flags"]["medal"]["modules"]
-    #     nb_of_medals = data["flags"]["medal"]["nb"]
-    #     tab = []
-    #     for i in range(nb_of_medals) :
-    #         tab.append(medals[i]["title"])
-    #     return tab
+    def getFlags(self):
+        login = self.getLogin()
+        print(f"login : {login}")
+        r = requests.get(self.baseURL + "/user/" + login + "/flags?format=json")
+        data = r.json()
+        medals = data["flags"]["medal"]["modules"]
+        nb_of_medals = data["flags"]["medal"]["nb"]
+        tab = []
+        for i in range(nb_of_medals) :
+            tab.append(medals[i]["title"])
+        return tab
 
     #### DASHBOARD ####
 
@@ -76,16 +76,16 @@ class API_INTRA:
         return r.json()["history"]
 
     def getCurrentProjects(self):
-        return self.__request__dashboard()["board"]["projets"]
+        return self.__request__dashboard()["projets"]
 
     def getCurrentActivities(self):
-        return self.__request__dashboard()["board"]["activities"]
+        return self.__request__dashboard()["activities"]
 
     def getCurrentModules(self):
-        return self.__request__dashboard()["board"]["activities"]
+        return self.__request__dashboard()["modules"]
 
     def getLastNotes(self):
-        return self.__request__dashboard()["board"]["notes"]
+        return self.__request__dashboard()["notes"]
 
     def getLastNotification(self):
         return self.__request__dashboard2()[0]["title"]
@@ -103,10 +103,29 @@ class API_INTRA:
 
     ### POST METHODS ####
 
+    def checkName(self, module_name) :
+        res = self.getCurrentModules()
+
+        for i in res :
+            ratio = fuzz.ratio(module_name, i["title"])
+            print(ratio)
+            if (ratio > 55):
+                print(i["title_link"])
+                return i["title_link"]
+        return ""
+
     def register_module(self, module_name) :
-        return requests.post("https://intra.epitech.eu/module/2020/" + module_name + "/MPL-4-1/register?format=json", json="{login:\"" + self.getLogin() +"\"")
+        name = self.checkName(module_name)
+        if (name == "") :
+            return
+        print(name)
+        # return requests.post("https://intra.epitech.eu/" + name + "/register?format=json", json="{login:\"" + self.getLogin() +"\"")
+
     def unregister_module(self, module_name) :
-        return requests.post("https://intra.epitech.eu/module/2020/" + module_name + "/MPL-4-1/unregister?format=json", json="{login:\"" + self.getLogin() +"\"")
+        name = self.checkName(module_name)
+        if (name == "") :
+            return
+        return requests.post("https://intra.epitech.eu/" + name + "/unregister?format=json", json="{login:\"" + self.getLogin() +"\"")
 
     def register_projet(self, module_name) :
         return (200)
