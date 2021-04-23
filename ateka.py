@@ -31,10 +31,19 @@ def mainFunction(source, VOICE_PLAYER, INST_API_INTRA, COMMANDS):
     print("-----")
     commands = COMMANDS.getCommands()
 
-    # tab = INST_API_INTRA.getFlags()
+    ratio1 = fuzz.ratio(text, "inscrit moi au module xxx")
+    if (ratio1 > 50):
+        VOICE_PLAYER.__say__("vous avez bien ete inscrit au module " + INST_API_INTRA.register_module(text[-10:]) + " ")
+        return
+    # ratio2 = fuzz.ratio(text, "inscrit moi au projet xxx")
+    # ratio3 = fuzz.ratio(text, "inscrit moi a l'activite xxx")
+    ratio4 = fuzz.ratio(text, "desinscrit moi du module xxx")
+    if (ratio4 > 50):
+        VOICE_PLAYER.__say__("vous avez bien ete desinscrit au module " + INST_API_INTRA.unregister_module(text[-10:]) + " ")# ratio5 = fuzz.ratio(text, "desinscrit moi du projet xxx")
+        return
+    # ratio6 = fuzz.ratio(text, "desinscrit moi de l'activite xxx")
 
-    # for i in tab:
-    #     print(i)
+
     for i in commands:
         ratio = fuzz.ratio(text, i["sentence"].lower())
         print("-----")

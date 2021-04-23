@@ -109,7 +109,7 @@ class API_INTRA:
         for i in res :
             ratio = fuzz.ratio(module_name, i["title"])
             print(ratio)
-            if (ratio > 55):
+            if (ratio >= 35):
                 print(i["title_link"])
                 return i["title_link"]
         return ""
@@ -119,13 +119,15 @@ class API_INTRA:
         if (name == "") :
             return
         print(name)
-        # return requests.post("https://intra.epitech.eu/" + name + "/register?format=json", json="{login:\"" + self.getLogin() +"\"")
+        requests.post("https://intra.epitech.eu/" + name + "/register?format=json", json="{login:\"" + self.getLogin() +"\"")
+        return name
 
     def unregister_module(self, module_name) :
         name = self.checkName(module_name)
         if (name == "") :
-            return
-        return requests.post("https://intra.epitech.eu/" + name + "/unregister?format=json", json="{login:\"" + self.getLogin() +"\"")
+            return name
+        requests.post("https://intra.epitech.eu/" + name + "/unregister?format=json", json="{login:\"" + self.getLogin() +"\"")
+        return name
 
     def register_projet(self, module_name) :
         return (200)
