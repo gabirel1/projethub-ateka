@@ -76,13 +76,14 @@ class API_INTRA:
         return r.json()["history"]
 
     def getCurrentProjects(self):
-        return self.__request__dashboard()["projets"]
+        return ' '.join([i["title"] for i in self.__request__dashboard()["projets"]])
 
     def getCurrentActivities(self):
         return self.__request__dashboard()
 
     def getCurrentModules(self):
-        return self.__request__dashboard()["modules"]
+        listModule = [i['title'] for i in self.__request__dashboard()["modules"]]
+        return ' '.join(listModule)
 
     def getLastNotes(self):
         return self.__request__dashboard()["notes"][0]['note']
